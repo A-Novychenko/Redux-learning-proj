@@ -1,5 +1,6 @@
 import { Button } from 'components/Button/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setStatusFilter } from 'redux/actions';
 import { getStatusFilter } from 'redux/selectors';
 import { statusFilters } from '../../redux/constants';
 
@@ -7,11 +8,30 @@ import css from './StatusFilter.module.css';
 
 export const StatusFilter = () => {
   const filter = useSelector(getStatusFilter);
+
+  const dispatch = useDispatch();
+
+  const handlerFilter = filter => dispatch(setStatusFilter(filter));
   return (
     <div className={css.wrapper}>
-      <Button selected={filter === statusFilters.all}>All</Button>
-      <Button selected={filter === statusFilters.active}>Active</Button>
-      <Button selected={filter === statusFilters.completed}>Completed</Button>
+      <Button
+        selected={filter === statusFilters.all}
+        onClick={() => handlerFilter(statusFilters.all)}
+      >
+        All
+      </Button>
+      <Button
+        selected={filter === statusFilters.active}
+        onClick={() => handlerFilter(statusFilters.active)}
+      >
+        Active
+      </Button>
+      <Button
+        selected={filter === statusFilters.completed}
+        onClick={() => handlerFilter(statusFilters.completed)}
+      >
+        Completed
+      </Button>
     </div>
   );
 };
