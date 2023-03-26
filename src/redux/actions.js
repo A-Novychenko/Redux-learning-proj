@@ -14,7 +14,7 @@ export const addTask = text => {
 export const deleteTask = taskId => {
   return {
     type: 'tasks/deleteTask',
-    patload: taskId,
+    payload: taskId,
   };
 };
 
