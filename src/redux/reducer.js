@@ -17,19 +17,33 @@ const tasksInitialState = [
 ];
 
 export const tasksReducer = createReducer(tasksInitialState, {
-  [addTask]: (state, action) => [...state, action.payload],
-  [deleteTask]: (state, action) =>
-    state.filter(task => task.id !== action.payload),
-  [toggleCompleted]: (state, action) =>
-    state.map(task => {
-      if (task.id !== action.payload) {
-        return task;
+  // [addTask]: (state, action) => [...state, action.payload],
+  [addTask]: (state, action) => {
+    state.push(action.payload);
+  },
+  // [deleteTask]: (state, action) =>
+  //   state.filter(task => task.id !== action.payload),
+  [deleteTask]: (state, action) => {
+    const ind = state.findIndex(task => task.id === action.payload);
+    state.splice(ind, 1);
+  },
+  // [toggleCompleted]: (state, action) =>
+  //   state.map(task => {
+  //     if (task.id !== action.payload) {
+  //       return task;
+  //     }
+  //     return {
+  //       ...task,
+  //       completed: !task.completed,
+  //     };
+  //   }),
+  [toggleCompleted]: (state, action) => {
+    for (const task of state) {
+      if (task.id === action.payload) {
+        task.completed = !task.completed;
       }
-      return {
-        ...task,
-        completed: !task.completed,
-      };
-    }),
+    }
+  },
   [deleteAll]: () => [],
 });
 
@@ -38,8 +52,7 @@ const filtersInitialState = {
 };
 
 export const filtersReducer = createReducer(filtersInitialState, {
-  [setStatusFilter]: (state, action) => ({
-    ...state,
-    status: action.payload,
-  }),
+  [setStatusFilter]: (state, action) => {
+    state.status = action.payload;
+  },
 });
