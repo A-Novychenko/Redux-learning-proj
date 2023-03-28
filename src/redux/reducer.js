@@ -27,6 +27,8 @@ const tasksReducer = (state = tasksInitialState, action) => {
           completed: !task.completed,
         };
       });
+    case 'tasks/deleteAll':
+      return [];
 
     default:
       return state;

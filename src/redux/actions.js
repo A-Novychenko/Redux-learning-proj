@@ -24,6 +24,11 @@ export const toggleCompleted = taskId => {
     payload: taskId,
   };
 };
+export const deleteAll = () => {
+  return {
+    type: 'tasks/deleteAll',
+  };
+};
 
 export const setStatusFilter = value => {
   return {

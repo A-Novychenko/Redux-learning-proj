@@ -1,6 +1,6 @@
 import { Button } from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { setStatusFilter } from 'redux/actions';
+import { deleteAll, setStatusFilter } from 'redux/actions';
 import { getStatusFilter } from 'redux/selectors';
 import { statusFilters } from '../../redux/constants';
 
@@ -14,6 +14,7 @@ export const StatusFilter = () => {
   const handlerFilter = filter => dispatch(setStatusFilter(filter));
   return (
     <div className={css.wrapper}>
+      <Button onClick={() => dispatch(deleteAll())}>Delete All</Button>
       <Button
         selected={filter === statusFilters.all}
         onClick={() => handlerFilter(statusFilters.all)}
