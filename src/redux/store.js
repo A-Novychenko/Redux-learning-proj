@@ -5,6 +5,6 @@ import { configureStore } from '@reduxjs/toolkit';
 export const store = configureStore({
   reducer: {
     tasks: tasksReducer,
-    filter: filtersReducer,
+    filters: filtersReducer,
   },
 });
