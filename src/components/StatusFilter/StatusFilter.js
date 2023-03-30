@@ -1,6 +1,7 @@
 import { Button } from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteAll, setStatusFilter } from 'redux/actions';
+import { setStatusFilter } from 'redux/filtersSlice';
+import { deleteAll } from 'redux/tasksSlice';
 import { getStatusFilter } from 'redux/selectors';
 import { statusFilters } from '../../redux/constants';
 
